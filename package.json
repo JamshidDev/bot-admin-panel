@@ -6,11 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "host": "vite --host"
+
   },
   "dependencies": {
+    "feather-icons": "^4.29.1",
+    "v-mask": "^2.3.0",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.5"
+    "vue-feather": "^2.0.0",
+    "vue-router": "^4.2.5",
+    "vue-the-mask": "^0.11.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
@@ -18,6 +24,8 @@
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.5",
+    "sass": "^1.69.0",
+    "sass-loader": "^13.3.2",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.5"
   }

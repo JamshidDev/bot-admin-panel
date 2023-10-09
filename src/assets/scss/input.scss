@@ -1,0 +1,10 @@
+
+.error-message-enter-active,
+.error-message-leave-active {
+  transition: opacity 0.3s ease;
+}
+.error-message-enter-from,
+.error-message-leave-to {
+  opacity: 0;
+}
+   
