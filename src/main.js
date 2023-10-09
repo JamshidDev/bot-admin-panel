@@ -5,6 +5,7 @@ import { createApp } from 'vue';
 
 import VueFeather from 'vue-feather';
 import VueTheMask from 'vue-the-mask';
+import Notifications from '@kyvg/vue3-notification'
 
 import JRButton from '@/components/buttons/JRButton';
 // Custom components
@@ -12,8 +13,11 @@ import JRInput from '@/components/Input/JRInput';
 import JRMask from '@/components/Input/JRMask';
 import JRPassword from '@/components/Input/JRPassword';
 
+
+
 import App from './App.vue';
 import router from './router';
+
 
 const app = createApp(App)
 
@@ -29,4 +33,5 @@ app.component(VueFeather.name, VueFeather);
 
 app.use(router)
 app.use(VueTheMask)
+app.use(Notifications)
 app.mount('#app')
