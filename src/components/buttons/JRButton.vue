@@ -18,7 +18,7 @@ defineProps({
   },
   size: {
     type: String,
-    default: 'md',  // lg; md; sm
+    default: 'md',  // lg; md; sm  50 38 30
   },
   type: {
     type: String,
@@ -44,7 +44,6 @@ defineProps({
 
 
 })
-const invalid_values = ['', null, undefined]
 </script>
   
   

@@ -26,14 +26,19 @@ export default {
       primary:'#4e74ec',
       success:'#3dcf7e',
       white:'#ffffff',
+      'transparent':'transparent',
       'black':{
+        icon:'#878a99',
         700:'#1e1a22'
       },
 
       // text colors
       'color':{
         'title':'#19242f',
-        'subtitle':'#878a99'
+        'subtitle':'#878a99',
+        'layout-overal':'#0f111459',
+        'page-content':'#f7f7f7',
+        'hover-icon-button':'#e9ebec'
       },
 
       input:{
