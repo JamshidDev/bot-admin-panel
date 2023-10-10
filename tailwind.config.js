@@ -38,7 +38,9 @@ export default {
         'subtitle':'#878a99',
         'layout-overal':'#0f111459',
         'page-content':'#f7f7f7',
-        'hover-icon-button':'#e9ebec'
+        'hover-icon-button':'#e9ebec',
+        'sidebar-text-color':'#97979a',
+        'sidebar-bg-color':'#181a20',
       },
 
       input:{
