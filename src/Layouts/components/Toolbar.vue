@@ -5,13 +5,11 @@
     </div>
     <div class="flex gap-2">
       <JR-Icon-Button :icon="'sun'"></JR-Icon-Button>
-
       <JR-Icon-Button :icon="'bell'"></JR-Icon-Button>
     </div>
    </div>
 </template>
 
 <script setup>
-
 defineEmits(['sidebarEvent']);
 </script>
