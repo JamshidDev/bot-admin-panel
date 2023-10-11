@@ -5,6 +5,8 @@ import {
 
 import Layout from '@/Layouts/Layout'
 import Login from '@/Layouts/Login'
+import HomePage from "../pages/Home/HomePage.vue"
+import Bank from "../pages/Bank/Bank.vue"
 // import Dashboard from '@/views/Dashboard/Dashboard.vue'
 // import Sponser from '@/views/Sponser/Sponser.vue'
 // import SponserDetails from '@/views/Sponser-details/SponserDetails.vue'
@@ -14,23 +16,18 @@ const routes = [
         path: "/",
         name: "layout",
         component: Layout,
-        // children:[
-        //     {
-        //         path: "/dashboard",
-        //         name: "dashboard",
-        //         component: Dashboard,
-        //     },
-        //     {
-        //         path: "/sponser",
-        //         name: "sponser",
-        //         component: Sponser,
-        //     },
-        //     {
-        //         path: "/sponser/:id/:fullname",
-        //         name: "sponser-details",
-        //         component: SponserDetails,
-        //     }
-        // ]
+        children:[
+            {
+                path: "/home",
+                name: "home",
+                component: HomePage,
+            },
+            {
+                path: "/bank",
+                name: "bank",
+                component: Bank,
+            },
+        ]
     },
     {
         path: "/login",

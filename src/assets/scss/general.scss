@@ -2,3 +2,24 @@
 * {
     -webkit-tap-highlight-color: transparent !important;
 }
+
+.jr-modal-animation {
+    opacity: 0;
+    animation: modal_keyframes 0.3s ease-out 0.1s 1 forwards;
+}
+
+
+@keyframes modal_keyframes {
+    0%{
+        opacity: 0;
+        transform: translateY(-200px);
+        transform: scale(0.9);
+
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+        transform: scale(1);
+    }
+    
+}

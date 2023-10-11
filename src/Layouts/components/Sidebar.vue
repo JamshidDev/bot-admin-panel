@@ -4,7 +4,7 @@
             <img src="../../assets/picture/robot.png" class="w-[30px]" alt="">
             <span class="font-bold uppercase text-white text-xl">Telegram bot</span>
         </div>
-        <div class="w-full text-color-sidebar-text-color hover:text-white" v-for="item in menu_list" :key="item.to">
+        <div class="w-full text-color-sidebar-text-color hover:text-white transition-all duration-200" v-for="item in menu_list" :key="item.to">
             <div class="flex gap-2 mx-3 my-1 p-2 cursor-pointer transition-all duration-200">
                 <vue-feather :type="item.icon" size="18" class="transition-all duration-200"></vue-feather>
                 <div class="text-sm font-normal">{{ item.label }}</div>

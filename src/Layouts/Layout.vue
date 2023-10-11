@@ -9,7 +9,8 @@
             <Toolbar @sidebar-event="control_sidebar()" />
         </div>
         <div
-            class=" page-content block bg-color-page-content  min-h-screen  w-full relative z-[2] transition-all duration-300 ">
+            class=" page-content block bg-color-page-content  min-h-screen  w-full relative  transition-all duration-300 px-4 ">
+            <router-view></router-view>
         </div>
         <!-- sidebar overal menu -->
         <div @click="control_sidebar()" v-if="open_sidebar"

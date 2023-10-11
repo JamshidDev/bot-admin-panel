@@ -41,6 +41,7 @@ export default {
         'hover-icon-button':'#e9ebec',
         'sidebar-text-color':'#97979a',
         'sidebar-bg-color':'#181a20',
+        'modal-bg-bolor':'#01013752',
       },
 
       input:{
