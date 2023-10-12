@@ -1,7 +1,7 @@
 <template>
   <button class="flex justify-center items-center   gap-2 text-white rounded-md border"
   :disabled="disabled"
-    :class="[type == 'primary' && 'bg-primary border-primary', type == 'success' && 'bg-success border-success ', size == 'md' && 'py-[6px] px-[26px] text-base', size == 'sm' && 'py-[4px] px-[26px] text-sm', size == 'lg' && 'py-[12px] px-[26px] text-base']">
+    :class="[type == 'primary' && 'bg-primary border-primary', type == 'success' && 'bg-success border-success ', type == 'danger' && 'bg-danger  border-danger ',  size == 'md' && 'py-[6px] px-[26px] text-base', size == 'sm' && 'py-[4px] px-[26px] text-sm', size == 'lg' && 'py-[12px] px-[26px] text-base']">
     <vue-feather v-show="loading" type="loader" animation="spin"></vue-feather>
     <vue-feather v-if="!loading && iconLeft" :type="iconLeft" size="18"></vue-feather>
     {{ label }}

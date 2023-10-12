@@ -17,6 +17,7 @@ import JRMask from '@/components/Input/JRMask';
 import JRPassword from '@/components/Input/JRPassword';
 import JRPagination from "./components/pagination/JRPagination.vue"
 import JRModal from "@/components/modal/JRModal.vue"
+import JRNoDate from "@/components/no-data-page/JRNoData.vue"
 import Notifications from '@kyvg/vue3-notification';
 
 import App from './App.vue';
@@ -33,6 +34,7 @@ app.component('JR-Button', JRButton);
 app.component('JR-Icon-Button', JRIconButton);
 app.component('JR-Pagination', JRPagination);
 app.component('JR-Modal', JRModal);
+app.component('JR-No-Date', JRNoDate);
 
 
 app.component(VueFeather.name, VueFeather);

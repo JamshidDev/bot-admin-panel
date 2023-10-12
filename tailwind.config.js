@@ -26,6 +26,7 @@ export default {
       primary:'#4e74ec',
       success:'#3dcf7e',
       white:'#ffffff',
+      danger:'#ff6c6c',
       'transparent':'transparent',
       'black':{
         icon:'#878a99',

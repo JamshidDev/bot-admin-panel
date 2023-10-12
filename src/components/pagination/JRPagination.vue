@@ -62,7 +62,6 @@ watch(current_page, (newValue, oldValue) => {
 })
 
 const change_pagination = (selected_page, total) => {
-    console.log(total);
     let dots = '...'
     if (selected_page == dots) return;
 
@@ -115,8 +114,6 @@ const change_pagination = (selected_page, total) => {
         page: current_page.value,
         per_page: page_row.value,
     })
-
-    console.log(page_list);
 }
 
 const prev_btn = () => {

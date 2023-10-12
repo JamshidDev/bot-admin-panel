@@ -1,13 +1,14 @@
 <template>
     <div class="w-full">
-        <div class="w-full my-4 pb-4 pt-1 flex gap-2 justify-center items-center border-b-[1px] border-[#474747] "> 
+        <div class="w-full my-4 pb-4 pt-1 flex gap-2 justify-center items-center border-b-[1px] border-[#474747] ">
             <img src="../../assets/picture/robot.png" class="w-[30px]" alt="">
             <span class="font-bold uppercase text-white text-xl">Telegram bot</span>
         </div>
-        <div class="w-full text-color-sidebar-text-color hover:text-white transition-all duration-200" v-for="item in menu_list" :key="item.to">
+        <div v-for="item in menu_list" :key="item.to" :class="route.path == item.to && 'text-white'" @click="router.push(item.to)"
+            class="w-full text-color-sidebar-text-color hover:text-white">
             <div class="flex gap-2 mx-3 my-1 p-2 cursor-pointer transition-all duration-200">
-                <vue-feather :type="item.icon" size="18" class="transition-all duration-200"></vue-feather>
-                <div class="text-sm font-normal">{{ item.label }}</div>
+                <vue-feather :type="item.icon" size="18" class=""></vue-feather>
+                <div class="text-sm font-normal ">{{ item.label }}</div>
             </div>
         </div>
         <a href="tel:+998977716004" class="block m-4 p-4 border text-[#5036c5] border-[#5036c5] rounded-lg mt-10 shadow-lg">
@@ -21,9 +22,17 @@
 </template>
  
 <script setup>
+import { onMounted } from "vue";
+import { useRouter, useRoute } from 'vue-router';
 
-defineEmits(['sidebarEvent']);
 
+
+
+
+const emit = defineEmits(['sidebarEvent']);
+
+const router = useRouter();
+const route = useRoute();
 const menu_list = [
     {
         label: 'Umumiy Statistika',
@@ -35,7 +44,7 @@ const menu_list = [
     {
         label: 'Bugungi Statistika',
         icon: 'book-open',
-        to: '/main',
+        to: '/bank',
         visible: () => true,
 
     },
@@ -76,8 +85,14 @@ const menu_list = [
         visible: () => true,
     },
     {
-        label: 'Buyurtmalar',
-        icon: 'globe',
+        label: 'Kanallar',
+        icon: 'radio',
+        to: '/main2',
+        visible: () => true,
+    },
+    {
+        label: 'Gruppalar',
+        icon: 'radio',
         to: '/main2',
         visible: () => true,
     },
@@ -104,15 +119,14 @@ const menu_list = [
         icon: 'globe',
         to: '/main2',
         visible: () => true,
-    },
-    {
-        label: 'Buyurtmalar',
-        icon: 'globe',
-        to: '/main2',
-        visible: () => true,
-    },
-   
+    }
 
-]
+
+];
+
+
+onMounted(() => {
+    console.log(route.path);
+});
 </script>
  
