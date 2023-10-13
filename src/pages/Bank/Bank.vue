@@ -78,7 +78,7 @@
     </JR-Modal>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref } from 'vue';
 
 const add_dialog = ref(false);
 const submitted = ref(false);
