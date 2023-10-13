@@ -47,7 +47,7 @@
             <JR-No-Date v-show="false"></JR-No-Date>
 
         </div>
-       
+
 
 
     </div>
@@ -78,8 +78,8 @@
     </JR-Modal>
 </template>
 <script setup>
-import { ref } from 'vue';
-
+import { ref, inject } from 'vue';
+// const swal = inject('$swal')
 const add_dialog = ref(false);
 const submitted = ref(false);
 const search = ref('');

@@ -43,4 +43,5 @@ app.use(router)
 app.use(VueTheMask)
 app.use(Notifications)
 app.use(VueSweetalert2)
+window.Swal =  app.config.globalProperties.$swal;
 app.mount('#app')
