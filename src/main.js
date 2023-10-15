@@ -1,13 +1,12 @@
 import './style.css';
 import './assets/scss/index.scss';
-
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 import { createApp } from 'vue';
 
 import VueFeather from 'vue-feather';
-import VueTheMask from 'vue-the-mask';
 import VueSweetalert2 from 'vue-sweetalert2';
+import VueTheMask from 'vue-the-mask';
 
 import JRButton from '@/components/buttons/JRButton';
 import JRIconButton from '@/components/buttons/JRIconButton';
@@ -15,12 +14,12 @@ import JRIconButton from '@/components/buttons/JRIconButton';
 import JRInput from '@/components/Input/JRInput';
 import JRMask from '@/components/Input/JRMask';
 import JRPassword from '@/components/Input/JRPassword';
-import JRPagination from "./components/pagination/JRPagination.vue"
-import JRModal from "@/components/modal/JRModal.vue"
-import JRNoDate from "@/components/no-data-page/JRNoData.vue"
+import JRModal from '@/components/Modal/JRModal.vue';
+import JRNoDate from '@/components/no-data-page/JRNoData.vue';
 import Notifications from '@kyvg/vue3-notification';
 
 import App from './App.vue';
+import JRPagination from './components/pagination/JRPagination.vue';
 import router from './router';
 
 const app = createApp(App)
