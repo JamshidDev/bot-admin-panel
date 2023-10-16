@@ -42,7 +42,7 @@ const menu_list = [
 
     },
     {
-        label: 'Bugungi Statistika',
+        label: "Bank ma'lumotlari",
         icon: 'book-open',
         to: '/bank',
         visible: () => true,
@@ -125,8 +125,6 @@ const menu_list = [
 ];
 
 
-onMounted(() => {
-    console.log(route.path);
-});
+
 </script>
  

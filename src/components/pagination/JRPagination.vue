@@ -16,7 +16,7 @@
                 <vue-feather type="chevron-left" size="24"></vue-feather>
             </div>
             <div v-for="item in page_list" :key="item" :class="[(current_page == item) && 'bg-blue text-white']"
-                @click="change_pagination(item, total_page_count)"
+                @click="change_pagination(item, total_page_count, true)"
                 class="cursor-pointer text-sm  px-3 h-[30px] shadow-lg select-none   border border-input-border rounded-lg flex justify-center items-center">
                 {{ item }}
             </div>
@@ -57,11 +57,11 @@ const page_list = ref([]);
 const total_page_count = computed(() => {
     return Math.ceil(props.total_item / page_row.value)
 })
-watch(current_page, (newValue, oldValue) => {
-
+watch(props, (newValue, oldValue) => {
+    change_pagination(newValue.page, Math.ceil(newValue.total_item / page_row.value), false)
 })
 
-const change_pagination = (selected_page, total) => {
+const change_pagination = (selected_page, total, request) => {
     let dots = '...'
     if (selected_page == dots) return;
 
@@ -109,25 +109,29 @@ const change_pagination = (selected_page, total) => {
 
 
     }
-
-    emit('chageEvent', {
+    if(request){
+        emit('chageEvent', {
         page: current_page.value,
         per_page: page_row.value,
     })
+    }
+   
 }
+
+
 
 const prev_btn = () => {
     if (current_page.value == 1) return
-    change_pagination(current_page.value - 1, total_page_count.value)
+    change_pagination(current_page.value - 1, total_page_count.value,true)
 }
 
 const next_btn = () => {
     if (current_page.value == total_page_count.value) return
-    change_pagination(current_page.value + 1, total_page_count.value)
+    change_pagination(current_page.value + 1, total_page_count.value, true)
 }
 
 const change_page_row = ()=>{
-    change_pagination(1, total_page_count.value)
+    change_pagination(1, total_page_count.value, true)
 }
 
 
@@ -136,7 +140,7 @@ const change_page_row = ()=>{
 onMounted(() => {
     current_page.value = props.page;
     page_row.value = props.per_page;
-    change_pagination(props.page, total_page_count.value)
+    change_pagination(props.page, Math.ceil(props.total_item / page_row.value), false)
 })
 
 </script>

@@ -1,7 +1,8 @@
 <template>
     <div class="pt-4  select-none ">
         <div class="grid xl:grid-cols-4 lg:grid-cols-4 grid-cols-1 gap-2">
-            <JR-Input mask="###" type="text" v-model="search" class="w-full block" placeholder="Qidiruv..."></JR-Input>
+            <JR-Input mask="###" type="text" v-model="params.search" class="w-full block"
+                placeholder="Qidiruv..."></JR-Input>
             <div></div>
             <div></div>
             <div class="flex justify-end">
@@ -10,7 +11,7 @@
         </div>
 
         <div class="grid grid-cols-1 mt-8 pb-20">
-            <div class="overflow-x-auto" v-show="true">
+            <div class="overflow-x-auto" v-show="table_list.length > 0 && !table_loading">
                 <table class="table-auto border-collaps bg-transparent w-full">
                     <thead class="border-input-border">
                         <tr
@@ -20,31 +21,34 @@
                             <th style="min-width: 100px; width: 120px;">Kredit</th>
                             <th style="min-width: 200px;">Natija(uz) </th>
                             <th style="min-width: 200px;">Natija(ru)</th>
-                            <th style="min-width: 100px;">Amallar</th>
+                            <th style="min-width: 80px; width:120px;">Amallar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b-[20px] border-[#f7f7f7] overflow-hidden" v-for="item in 10"
-                            :key="item">
-                            <td class="text-center p-2 text-sm">{{ item }}</td>
-                            <td class="text-center p-2 font-semibold xl:text-base lg:text-base text-sm">100</td>
-                            <td class="text-center p-2 font-semibold xl:text-base lg:text-base text-sm">0810</td>
-                            <td class="p-2 xl:text-base lg:text-base text-sm">Xo`jalik usulida qurilgan asosiy vosita
-                                hisobga olindi va foydalanishga topshirildi</td>
-                            <td class="p-2 xl:text-base lg:text-base text-sm">Принят к учету и введен в эксплуатацию
-                                основное средство, построенный хозспособом</td>
+                        <tr class="bg-white border-b-[20px] border-[#f7f7f7] overflow-hidden" v-for="item in table_list"
+                            :key="item._id">
+                            <td class="text-center p-2 text-sm">{{ item.number }}</td>
+                            <td class="text-center p-2 font-semibold xl:text-base lg:text-base text-sm">{{ item.debet }}
+                            </td>
+                            <td class="text-center p-2 font-semibold xl:text-base lg:text-base text-sm">{{ item.kredit }}
+                            </td>
+                            <td class="p-2 xl:text-base lg:text-base text-sm">{{ item.result_uz }}</td>
+                            <td class="p-2 xl:text-base lg:text-base text-sm">{{ item.result_ru }}</td>
                             <td class="p-2">
-                                <div class="flex gap-4">
-                                    <JR-Icon-Button :icon="'edit'"></JR-Icon-Button>
+                                <div class="flex justify-between">
+                                    <JR-Icon-Button :icon="'edit'" @click="edit_modal(item)"></JR-Icon-Button>
                                     <JR-Icon-Button :icon="'trash-2'"></JR-Icon-Button>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <JR-Pagination @chageEvent="logevent" :total_item="1000" :per_page="20" :page="1"></JR-Pagination>
+                <JR-Pagination @chageEvent="change_pagination($event)" :total_item="total_item" :per_page="params.per_page"
+                    :page="params.page"></JR-Pagination>
             </div>
-            <JR-No-Date v-show="false"></JR-No-Date>
+            <JR-Skeleton v-show="table_loading"></JR-Skeleton>
+            <JR-No-Date v-show="table_list.length == 0 && !table_loading"></JR-No-Date>
+
 
         </div>
 
@@ -54,7 +58,7 @@
     <JR-Modal v-model="add_dialog" header="Yangi bank qo'shish">
         <template v-slot:body>
             <div class="grid grid-cols-1 p-4 gap-2">
-                <JR-Input mask="###" type="number" v-model="bank_details.debit" :invalid="submitted"
+                <JR-Input mask="###" type="number" v-model="bank_details.debet" :invalid="submitted"
                     :errorMessage="'Username kiritilishi shart!'" label="Debit raqam" class="w-full block"
                     placeholder="Kiriting"></JR-Input>
                 <JR-Input mask="###" type="number" v-model="bank_details.kredit" :invalid="submitted"
@@ -78,35 +82,87 @@
     </JR-Modal>
 </template>
 <script setup>
-import { ref, inject } from 'vue';
-// const swal = inject('$swal')
+import { ref, onMounted } from 'vue';
+import bankService from "@/service/services/bankService"
 const add_dialog = ref(false);
 const submitted = ref(false);
-const search = ref('');
+const table_loading = ref(false);
+const dialog_type = ref(true);
+const edited_item_id = ref(null);
+const table_list = ref([]);
+const total_item = ref(10);
+const params = ref({
+    page: 1,
+    per_page: 10,
+    search: ''
+});
 
 const bank_details = ref({
-    debit: null,
+    debet: null,
     kredit: null,
     result_uz: null,
     result_ru: null,
 })
 
-function logevent(data) {
+function change_pagination(data) {
+    params.value.page = data.page;
+    params.value.per_page = data.per_page;
+    get_list(params.value)
 }
 
 
+function get_list(payload) {
+    table_loading.value = true;
+    bankService.get_banks(payload).then((res) => {
+        total_item.value = res.data.total_item;
+        table_list.value = res.data.data;
+    }).finally(() => {
+        table_loading.value = false;
+    })
+}
 
 const open_modal = () => {
+    for (const key in bank_details.value) {
+        bank_details.value[key] = null;
+    }
+    submitted.value = false;
+    add_dialog.value = true;
+    dialog_type.value = true;
+
+}
+
+const edit_modal = (data) => {
+    edited_item_id.value = data._id;
+    bank_details.value.debet = data.debet;
+    bank_details.value.kredit = data.kredit;
+    bank_details.value.result_uz = data.result_uz;
+    bank_details.value.result_ru = data.result_ru;
     submitted.value = false;
     add_dialog.value = true
-
+    dialog_type.value = false;
 }
 
 const add_bank = () => {
     submitted.value = true;
+    table_loading.value = true;
+    add_dialog.value = false;
+    if (dialog_type.value) {
+        bankService.create_banks({ data: bank_details.value }).finally(() => {
+            get_list()
+        })
+    } else {
+        bankService.update_banks({ bank_id: edited_item_id.value, data: bank_details.value }).finally(() => {
+            get_list()
+        })
+    }
+
 
 
 
 }
+
+onMounted(() => {
+    get_list(params.value)
+})
 
 </script>

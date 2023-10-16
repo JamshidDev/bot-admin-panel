@@ -42,9 +42,7 @@
 </template>
 
 <script setup>
-import { useNotification } from "@kyvg/vue3-notification";
-
-const { notify } = useNotification()
+import authService from "@/service/services/authService";
 import { ref } from 'vue';
 
 const user = ref({
@@ -59,19 +57,15 @@ const loading = ref(false);
 
 const login = () => {
     submitted.value = true;
-    console.log(user.value);
     if (user.value.login && user.value.password) {
-        console.log('clicked...');
         loading.value = true
-        setTimeout(() => {
+        authService.login_user({data: user.value}).then((res)=>{
+            localStorage.setItem("access_token",res.data.access_token);
+            localStorage.setItem("user_profile", JSON.stringify(res.data.data));
+            $router.push("/bank")
+        }).finally(()=>{
             loading.value = false
-            notify({
-            type: "error",
-            title: "Ruxsat etilmadi",
-            text: "Login yoki parol noto'g'ri!",
-        });
-        }, 3000)
-        
+        }) 
     }
 
 }

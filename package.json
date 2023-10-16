@@ -9,10 +9,10 @@
     "preview": "vite preview",
     "host": "vite --host",
     "start": "vite --host"
-
   },
   "dependencies": {
     "@kyvg/vue3-notification": "^3.0.2",
+    "axios": "^1.5.1",
     "feather-icons": "^4.29.1",
     "v-mask": "^2.3.0",
     "vue": "^3.3.4",
