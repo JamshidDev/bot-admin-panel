@@ -7,15 +7,28 @@ import Layout from '@/Layouts/Layout'
 import Login from '@/Layouts/Login'
 import HomePage from "../pages/Home/HomePage.vue"
 import Bank from "../pages/Bank/Bank.vue"
-// import Dashboard from '@/views/Dashboard/Dashboard.vue'
-// import Sponser from '@/views/Sponser/Sponser.vue'
-// import SponserDetails from '@/views/Sponser-details/SponserDetails.vue'
+import Members  from "../pages/Members/Members.vue"
+import ComingSoon from "../pages/ComingSoon/ComingSoon"
+
+
+
+const authLogin = (to, from, next) => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      next();
+    }else {
+      localStorage.removeItem("access_token");
+      next("login");
+    }
+  };
+
 
 const routes = [
     {
         path: "/",
         name: "layout",
         component: Layout,
+        beforeEnter: authLogin,
         children:[
             {
                 path: "/home",
@@ -26,6 +39,16 @@ const routes = [
                 path: "/bank",
                 name: "bank",
                 component: Bank,
+            },
+            {
+                path: "/members",
+                name: "members",
+                component: Members,
+            },
+            {
+                path: "/coming-soon",
+                name: "coming-soon",
+                component: ComingSoon,
             },
         ]
     },

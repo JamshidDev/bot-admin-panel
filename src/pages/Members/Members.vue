@@ -14,32 +14,36 @@
                 <table class="table-auto border-collaps bg-transparent w-full">
                     <thead class="border-input-border">
                         <tr
-                            class="text-[#B1B1B8] uppercase text-sm font-normal text-center border-b-[10px] border-[#f7f7f7]">
+                            class="text-[#3f3f3f] uppercase text-sm font-normal text-center border-b-[10px] border-[#f7f7f7]">
                             <th style="min-width: 30px; width:50px;">No</th>
-                            <th style="min-width: 100px; width: 120px;">Debit</th>
-                            <th style="min-width: 100px; width: 120px;">Kredit</th>
-                            <th style="min-width: 200px;">Natija(uz) </th>
-                            <th style="min-width: 200px;">Natija(ru)</th>
-                            <th style="min-width: 80px; width:120px;">Amallar</th>
+                            <th style="min-width: 40px; width:50px;">Avatar</th>
+                            <th style="min-width: 100px; width: 200px;">Id</th>
+                            <th style="min-width: 100px; width: 200px;">Ismi</th>
+                            <th style="min-width: 100px; width: 200px;">Username</th>
+                            <th style="min-width: 100px; width: 200px;">Holati </th>
+                            <th style="min-width: 100px; width: 200px;">Sana</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="bg-white border-b-[20px] border-[#f7f7f7] overflow-hidden" v-for="item in table_list"
                             :key="item._id">
                             <td class="text-center p-2 text-sm">{{ item.number }}</td>
-                            <td class="text-center p-2  xl:text-base lg:text-base text-sm">{{ item.debet }}
-                            </td>
-                            <td class="text-center p-2  xl:text-base lg:text-base text-sm">
-                                {{ item.kredit }}
-                            </td>
-                            <td class="p-2 xl:text-base lg:text-base text-sm text-center">{{ item.result_uz }}</td>
-                            <td class="p-2 xl:text-base lg:text-base text-sm text-center">{{ item.result_ru }}</td>
                             <td class="p-2">
-                                <div class="flex justify-between">
-                                    <JR-Icon-Button :icon="'edit'" @click="edit_modal(item)"></JR-Icon-Button>
-                                    <JR-Icon-Button :icon="'trash-2'" @click="delete_bank(item._id)"></JR-Icon-Button>
-                                </div>
+                                <JR-Avatar class="w-[36px] border-2 border-blue mx-auto"></JR-Avatar>
                             </td>
+                            <td class="text-center p-2 xl:text-base lg:text-base text-sm">32424234
+                            </td>
+                            <td class="text-center p-2 xl:text-base lg:text-base text-sm">Jamshid Raximov
+                            </td>
+                            <td class="text-center p-2 text-blue  xl:text-base lg:text-base text-sm">
+                                @jamacoder
+                            </td>
+                            <td class="p-2 xl:text-base lg:text-base text-sm text-center">
+                                <span class="px-4 py-[2px] bg-[#b0fda931] text-[#46c93a] text-sm rounded-md border border-[#46c93a] shadow-lg ">A'zo</span>
+                            </td>
+                            <td class="p-2 xl:text-base lg:text-base text-sm text-center">17-04-2023</td>
+
                         </tr>
                     </tbody>
                 </table>

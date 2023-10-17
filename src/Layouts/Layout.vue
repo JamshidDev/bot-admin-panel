@@ -2,7 +2,7 @@
     <div :class="[open_sidebar ? 'open-sdebar' : 'close-sdebar']"
         class="w-full min-h-screen relative overflow-hidden box-border ">
         <div :class="[open_sidebar ? 'left-[0px]' : 'left-[-260px]']"
-            class="sidebar-scroll pb-6 bg-color-sidebar-bg-color w-[260px] overflow-y-auto   fixed z-[6]  top-0 min-h-screen max-h-screen  transition-all duration-300">
+            class="sidebar-scroll pb-6 bg-[#111827] w-[260px] overflow-y-auto   fixed z-[6]  top-0 min-h-screen max-h-screen  transition-all duration-300">
             <Sidebar />
         </div>
         <div class="page-content block w-full transition-all duration-300">

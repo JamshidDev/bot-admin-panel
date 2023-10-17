@@ -12,4 +12,11 @@ export default defineConfig({
   },
 
   plugins: [vue()],
+  server: {
+    port: 5173,
+    strictPort: true,
+    hmr: {
+      port: 5173,
+    },
+  },
 })
