@@ -22,12 +22,12 @@
 </template>
  
 <script setup>
-import { onMounted } from "vue";
-import { useRouter, useRoute } from 'vue-router';
+import { onMounted } from 'vue';
 
-
-
-
+import {
+  useRoute,
+  useRouter,
+} from 'vue-router';
 
 const emit = defineEmits(['sidebarEvent']);
 
@@ -54,30 +54,30 @@ const menu_list = [
         to: '/members',
         visible: () => true,
     },
-    {
-        label: "To'lovlar tarixi",
-        icon: 'twitch',
-        to: '/coming-soon',
-        visible: () => true,
-    },
-    {
-        label: 'Yetkazilmagan Buyurtma',
-        icon: 'info',
-        to: '/coming-soon',
-        visible: () => true,
-    },
-    {
-        label: 'Curyerlar',
-        icon: 'user',
-        to: '/coming-soon',
-        visible: () => true,
-    },
-    {
-        label: 'Yangi buyurtmalar',
-        icon: 'shopping-bag',
-        to: '/coming-soon',
-        visible: () => true,
-    },
+    // {
+    //     label: "To'lovlar tarixi",
+    //     icon: 'twitch',
+    //     to: '/coming-soon',
+    //     visible: () => true,
+    // },
+    // {
+    //     label: 'Yetkazilmagan Buyurtma',
+    //     icon: 'info',
+    //     to: '/coming-soon',
+    //     visible: () => true,
+    // },
+    // {
+    //     label: 'Curyerlar',
+    //     icon: 'user',
+    //     to: '/coming-soon',
+    //     visible: () => true,
+    // },
+    // {
+    //     label: 'Yangi buyurtmalar',
+    //     icon: 'shopping-bag',
+    //     to: '/coming-soon',
+    //     visible: () => true,
+    // },
     {
         label: 'Kanallar',
         icon: 'radio',

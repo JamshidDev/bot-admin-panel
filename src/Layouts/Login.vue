@@ -42,8 +42,9 @@
 </template>
 
 <script setup>
-import authService from "@/service/services/authService";
 import { ref } from 'vue';
+
+import authService from '@/service/services/authService';
 
 const user = ref({
     login: '',
