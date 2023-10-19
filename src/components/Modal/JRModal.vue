@@ -1,6 +1,7 @@
 <template>
     <div v-show="modelValue" class="fixed w-full min-h-screen top-0 bottom-0 left-0 right-0 z-[100] ">
-        <div class="w-full min-h-full bg-color-modal-bg-bolor flex justify-center items-start " @click.self ="$emit('update:modelValue', false)">
+        <!-- @click.self ="$emit('update:modelValue', false)" -->
+        <div class="w-full min-h-full bg-color-modal-bg-bolor flex justify-center items-start ">
 
             <div class="bg-white  mt-20 rounded-lg shadow-md jr-modal-animation w-full" :class="breakpoint">
                 <header class="border-b-[1px] border-b-input-border p-4">

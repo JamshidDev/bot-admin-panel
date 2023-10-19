@@ -2,7 +2,7 @@
     <div class="w-full">
         <div class="w-full my-4 pb-4 pt-1 flex gap-2 justify-center items-center border-b-[1px] border-[#6e7582] ">
             <img src="../../assets/picture/robot.png" class="w-[30px]" alt="">
-            <span class="font-bold uppercase text-white text-xl">Telegram bot</span>
+            <span class="font-bold uppercase text-white text-xl">Redox bot</span>
         </div>
         <div v-for="item in menu_list" :key="item.to" :class="route.path == item.to && 'text-[#ffffff]'" @click="router.push(item.to)"
             class="w-full text-[#6e7582] hover:text-white">
@@ -49,35 +49,17 @@ const menu_list = [
 
     },
     {
+        label: "Xizmatlar",
+        icon: 'twitch',
+        to: '/services',
+        visible: () => true,
+    },
+    {
         label: 'Foydalanuvchilar',
         icon: 'users',
         to: '/members',
         visible: () => true,
     },
-    // {
-    //     label: "To'lovlar tarixi",
-    //     icon: 'twitch',
-    //     to: '/coming-soon',
-    //     visible: () => true,
-    // },
-    // {
-    //     label: 'Yetkazilmagan Buyurtma',
-    //     icon: 'info',
-    //     to: '/coming-soon',
-    //     visible: () => true,
-    // },
-    // {
-    //     label: 'Curyerlar',
-    //     icon: 'user',
-    //     to: '/coming-soon',
-    //     visible: () => true,
-    // },
-    // {
-    //     label: 'Yangi buyurtmalar',
-    //     icon: 'shopping-bag',
-    //     to: '/coming-soon',
-    //     visible: () => true,
-    // },
     {
         label: 'Kanallar',
         icon: 'radio',

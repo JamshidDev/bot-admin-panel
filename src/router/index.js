@@ -9,6 +9,7 @@ import HomePage from "../pages/Home/HomePage.vue"
 import Bank from "../pages/Bank/Bank.vue"
 import Members  from "../pages/Members/Members.vue"
 import ComingSoon from "../pages/ComingSoon/ComingSoon"
+import Service from "../pages/Service/Service.vue"
 
 
 
@@ -44,6 +45,11 @@ const routes = [
                 path: "/members",
                 name: "members",
                 component: Members,
+            },
+            {
+                path: "/services",
+                name: "services",
+                component: Service,
             },
             {
                 path: "/coming-soon",

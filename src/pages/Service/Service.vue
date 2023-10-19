@@ -16,10 +16,8 @@
                         <tr
                             class="text-[#B1B1B8] uppercase text-sm font-normal text-center border-b-[10px] border-[#f7f7f7]">
                             <th style="min-width: 30px; width:50px;">No</th>
-                            <th style="min-width: 100px; width: 120px;">Debit</th>
-                            <th style="min-width: 100px; width: 120px;">Kredit</th>
-                            <th style="min-width: 200px;">Natija(uz) </th>
-                            <th style="min-width: 200px;">Natija(ru)</th>
+                            <th style="min-width: 200px;">Xizmat nomi(uz) </th>
+                            <th style="min-width: 200px;">Xizmat nomi(ru)</th>
                             <th style="min-width: 80px; width:120px;">Amallar</th>
                         </tr>
                     </thead>
@@ -27,13 +25,8 @@
                         <tr class="bg-white border-b-[20px] border-[#f7f7f7] overflow-hidden" v-for="item in table_list"
                             :key="item._id">
                             <td class="text-center p-2 text-sm">{{ item.number }}</td>
-                            <td class="text-center p-2  xl:text-base lg:text-base text-sm">{{ item.debet }}
-                            </td>
-                            <td class="text-center p-2  xl:text-base lg:text-base text-sm">
-                                {{ item.kredit }}
-                            </td>
-                            <td class="p-2 xl:text-base lg:text-base text-sm text-center">{{ item.result_uz }}</td>
-                            <td class="p-2 xl:text-base lg:text-base text-sm text-center">{{ item.result_ru }}</td>
+                            <td class="p-2 xl:text-base lg:text-base text-sm text-center">{{ item.name_uz }}</td>
+                            <td class="p-2 xl:text-base lg:text-base text-sm text-center">{{ item.name_ru }}</td>
                             <td class="p-2">
                                 <div class="flex justify-between">
                                     <JR-Icon-Button :icon="'edit'" @click="edit_modal(item)"></JR-Icon-Button>
@@ -55,20 +48,14 @@
 
 
     </div>
-    <JR-Modal v-model="add_dialog" :header="dialog_type? 'Yangi bank qo\'shish' : 'Bankni tahrirlash'">
+    <JR-Modal v-model="add_dialog" :header="dialog_type? 'Yangi xizmat qo\'shish' : 'Xizmatni tahrirlash'">
         <template v-slot:body>
             <div class="grid grid-cols-1 p-4 gap-2">
-                <JR-Input mask="###" type="number" v-model="bank_details.debet" :invalid="submitted"
-                    :errorMessage="'Username kiritilishi shart!'" label="Debit raqam" class="w-full block"
+                <JR-Input mask="###" type="text" v-model="item_details.name_uz" :invalid="submitted"
+                    :errorMessage="'Username kiritilishi shart!'" label="Xizmat nomi (uz)" class="w-full block"
                     placeholder="Kiriting"></JR-Input>
-                <JR-Input mask="###" type="number" v-model="bank_details.kredit" :invalid="submitted"
-                    :errorMessage="'Username kiritilishi shart!'" label="Kredit raqam" class="w-full block"
-                    placeholder="Kiriting"></JR-Input>
-                <JR-Input mask="###" type="text" v-model="bank_details.result_uz" :invalid="submitted"
-                    :errorMessage="'Username kiritilishi shart!'" label="Natijani kiriting(uz)" class="w-full block"
-                    placeholder="Kiriting"></JR-Input>
-                <JR-Input mask="###" type="text" v-model="bank_details.result_ru" :invalid="submitted"
-                    :errorMessage="'Username kiritilishi shart!'" label="Natijani kiriting(ru)" class="w-full block"
+                <JR-Input mask="###" type="text" v-model="item_details.name_ru" :invalid="submitted"
+                    :errorMessage="'Username kiritilishi shart!'" label="Xizmat nomi (ru)" class="w-full block"
                     placeholder="Kiriting"></JR-Input>
             </div>
         </template>
@@ -83,7 +70,7 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';
-import bankService from "@/service/services/bankService"
+import generalService from "@/service/services/generalService"
 const add_dialog = ref(false);
 const submitted = ref(false);
 const table_loading = ref(false);
@@ -97,11 +84,9 @@ const params = ref({
     search: ''
 });
 
-const bank_details = ref({
-    debet: null,
-    kredit: null,
-    result_uz: null,
-    result_ru: null,
+const item_details = ref({
+    name_uz: null,
+    name_ru: null,
 })
 
 function change_pagination(data) {
@@ -113,7 +98,7 @@ function change_pagination(data) {
 
 function get_list(payload) {
     table_loading.value = true;
-    bankService.get_banks(payload).then((res) => {
+    generalService.get_categories(payload).then((res) => {
         total_item.value = res.data.total_item;
         let number = (params.value.page - 1) * params.value.per_page;
         res.data.data.forEach((item) => {
@@ -127,8 +112,8 @@ function get_list(payload) {
 }
 
 const open_modal = () => {
-    for (const key in bank_details.value) {
-        bank_details.value[key] = null;
+    for (const key in item_details.value) {
+        item_details.value[key] = null;
     }
     submitted.value = false;
     add_dialog.value = true;
@@ -138,10 +123,8 @@ const open_modal = () => {
 
 const edit_modal = (data) => {
     edited_item_id.value = data._id;
-    bank_details.value.debet = data.debet;
-    bank_details.value.kredit = data.kredit;
-    bank_details.value.result_uz = data.result_uz;
-    bank_details.value.result_ru = data.result_ru;
+    item_details.value.name_uz = data.name_uz;
+    item_details.value.name_ru = data.name_ru;
     submitted.value = false;
     add_dialog.value = true
     dialog_type.value = false;
@@ -152,11 +135,11 @@ const add_bank = () => {
     table_loading.value = true;
     add_dialog.value = false;
     if (dialog_type.value) {
-        bankService.create_banks({ data: bank_details.value }).finally(() => {
+        generalService.create_category({ data: item_details.value }).finally(() => {
             get_list()
         })
     } else {
-        bankService.update_banks({ bank_id: edited_item_id.value, data: bank_details.value }).finally(() => {
+        generalService.update_category({ category_id: edited_item_id.value, data: item_details.value }).finally(() => {
             get_list()
         })
     }
@@ -172,7 +155,7 @@ const delete_bank = (id) => {
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            bankService.delete_banks({ bank_id: id }).finally(() => {
+            generalService.delete_category({ category_id: id }).finally(() => {
                 Swal.fire("Muvofaqiyatli o'chirildi!", '', 'success')
                 get_list()
 
