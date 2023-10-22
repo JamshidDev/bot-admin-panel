@@ -9,7 +9,7 @@
             <Toolbar @sidebar-event="control_sidebar()" />
         </div>
         <div
-            class=" page-content block bg-color-page-content  min-h-screen  w-full relative  transition-all duration-300 px-4 ">
+            class=" page-content block bg-[#f6f9f8]  min-h-screen  w-full relative  transition-all duration-300 px-4 ">
             <router-view></router-view>
         </div>
         <!-- sidebar overal menu -->

@@ -1,4 +1,4 @@
-import './style.css';
+// import './style.css';
 import './assets/scss/index.scss';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -23,7 +23,8 @@ import JRAvatar from "@/components/avatar/JRAvatar"
 import App from './App.vue';
 import JRPagination from './components/pagination/JRPagination.vue';
 import router from './router';
-
+import naive from 'naive-ui'
+import 'vfonts/FiraCode.css'
 const app = createApp(App)
 
 
@@ -46,6 +47,8 @@ app.use(router)
 app.use(VueTheMask)
 app.use(Notifications)
 app.use(VueSweetalert2)
+app.use(naive)
+
 window.Swal =  app.config.globalProperties.$swal;
 window.Notify =  app.config.globalProperties.$notify;
 window.$router =  app.config.globalProperties.$router;
