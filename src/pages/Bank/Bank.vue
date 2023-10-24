@@ -110,6 +110,7 @@
                 show-size-picker
                 :page-sizes="pageSizes"
                 :on-update:page="change_pagination"
+                :on-update:page-size ="change_per_page"
             />
           </n-space>
 
@@ -200,16 +201,13 @@ const bank_details = ref({
   result_ru: null,
 })
 
-const model = ref({
-  firstname: null,
-})
+
 const formRef = ref(null)
 const rules = {
   pair_number: [
     {
       required: true,
       validator(rule, value) {
-        console.log(value)
         if (value.length == 0 || !value[0] || !value[1]) {
           return new Error("Maydon to'ldirilishi shart!");
         }
@@ -235,11 +233,15 @@ const rules = {
 }
 
 
-function change_pagination(data) {
-  console.log(data)
-  // params.value.page = data.page;
-  // params.value.per_page = data.per_page;
-  // get_list(params.value)
+function change_pagination(page) {
+  params.value.page = page;
+  get_list(params.value)
+}
+
+const change_per_page =(per_page)=>{
+  params.value.page = 1;
+  params.value.per_page = per_page;
+  get_list(params.value)
 }
 
 
@@ -307,26 +309,7 @@ const add_bank = () => {
 const delete_bank = (id) => {
   bankService.delete_banks({bank_id: id}).finally(() => {
     get_list()
-
   })
-
-
-  // Swal.fire({
-  //   title: "Haqiqattan ham o'chirmoqchimisiz?",
-  //   showDenyButton: true,
-  //   showCancelButton: false,
-  //   confirmButtonText: 'Ha',
-  //   denyButtonText: `Yo'q`,
-  // }).then((result) => {
-  //   /* Read more about isConfirmed, isDenied below */
-  //   if (result.isConfirmed) {
-  //     bankService.delete_banks({bank_id: id}).finally(() => {
-  //       Swal.fire("Muvofaqiyatli o'chirildi!", '', 'success')
-  //       get_list()
-  //
-  //     })
-  //   }
-  // })
 }
 
 
