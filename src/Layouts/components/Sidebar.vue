@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-dark-box">
     <div class="control-btn" @click="emit('sidebarEvent')">
-      <n-icon :component="DoubleArrowOutlined" size="22" :depth="1"/>
+      <n-icon :component="ChevronDoubleLeft16Filled" size="26" :depth="1"/>
     </div>
     <div class="logo-box" @click="router.push('/')">
       <img src="../../assets/picture/robot.png" alt="">
@@ -47,10 +47,7 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router';
-import { Duplicate } from "@vicons/ionicons5";
-import { UserCircle } from "@vicons/fa";
-import {  AdminPanelSettingsFilled,DoubleArrowOutlined } from "@vicons/material";
-import { ChartMultiple20Filled, BuildingBank16Regular } from "@vicons/fluent";
+import { ChartMultiple20Filled, BuildingBank16Regular, ChevronDoubleLeft16Filled, PersonCircle24Regular } from "@vicons/fluent";
 
 
 const emit = defineEmits(['sidebarEvent']);
@@ -74,25 +71,25 @@ const menu_list = [
     },
     {
         label: "Xizmatlar",
-        icon: Duplicate,
+        icon: ChartMultiple20Filled,
         to: '/services',
         visible: () => true,
     },
     {
         label: 'Foydalanuvchilar',
-        icon: UserCircle,
+        icon: PersonCircle24Regular,
         to: '/members',
         visible: () => true,
     },
     {
         label: 'Kanallar',
-        icon: AdminPanelSettingsFilled,
+        icon: ChartMultiple20Filled,
         to: '/coming-soon',
         visible: () => true,
     },
     {
         label: 'Gruppalar',
-        icon: AdminPanelSettingsFilled,
+        icon: ChartMultiple20Filled,
         to: '/coming-soon',
         visible: () => true,
     },

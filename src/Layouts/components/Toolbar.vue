@@ -2,7 +2,7 @@
    <div class="toolbar-container">
      <div>
        <div class="control-btn" @click=" $emit('sidebarEvent') ">
-         <n-icon :component="DoubleArrowOutlined" size="22" :depth="1"/>
+         <n-icon :component="ChevronDoubleLeft16Filled" size="26" :depth="1"/>
        </div>
      </div>
      <div>
@@ -30,12 +30,8 @@ import {
   useRouter,
 } from 'vue-router';
 import { NIcon } from "naive-ui";
-import {
-  PersonCircleOutline as UserIcon,
-  Pencil as EditIcon,
-  LogOutOutline as LogoutIcon
-} from "@vicons/ionicons5";
-import {DoubleArrowOutlined} from "@vicons/material";
+
+import { PersonCircle20Regular,SignOut24Regular,Settings48Regular, ChevronDoubleLeft16Filled } from "@vicons/fluent";
 const router = useRouter();
 const route = useRoute();
 
@@ -50,17 +46,16 @@ const options = [
   {
     label: 'Profile',
     key: 'profile',
-    icon: renderIcon(UserIcon)
-  },
-  {
-    label: 'Edit Profile',
-    key: 'editProfile',
-    icon: renderIcon(EditIcon)
+    icon: renderIcon(PersonCircle20Regular)
+  }, {
+    label: 'Sozlamalar',
+    key: 'setting',
+    icon: renderIcon(Settings48Regular)
   },
   {
     label: 'Logout',
     key: 'logout',
-    icon: renderIcon(LogoutIcon)
+    icon: renderIcon(SignOut24Regular)
   }
 ]
 defineEmits(['sidebarEvent']);
