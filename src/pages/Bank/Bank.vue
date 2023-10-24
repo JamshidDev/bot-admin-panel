@@ -1,11 +1,9 @@
 <template>
   <div class="pt-4 page-card">
-    <n-grid cols="1 s:1 m:2 l:2 xl:4 xxl:4" responsive="screen" style="margin-bottom: 20px">
+    <n-grid cols="1 s:2 m:2 l:2 xl:2 xxl:2" responsive="screen" style="margin-bottom: 20px">
       <n-grid-item>
-        <n-input v-model:value="params.search" type="text" placeholder="Qidiruv" />
+        <n-input style="width:100%; max-width: 200px" v-model:value="params.search" type="text" placeholder="Qidiruv" />
       </n-grid-item>
-      <n-grid-item></n-grid-item>
-      <n-grid-item></n-grid-item>
       <n-grid-item>
         <n-space justify="end">
           <n-button type="info" @click="open_modal()">
@@ -25,7 +23,7 @@
             </n-spin>
           </div>
           <div style="overflow-x: auto" v-show="table_list.length > 0 && !table_loading">
-            <n-table :bordered="false" :single-line="false" size="small">
+            <n-table :bordered="false" :single-line="false" size="small" class="table-border-x">
             <thead>
             <tr>
               <th style="min-width:40px; width: 40px;">No</th>
@@ -33,7 +31,7 @@
               <th style="min-width:80px; width: 80px">Kredit</th>
               <th style="min-width: 200px">Natija (uz)</th>
               <th style="min-width: 200px">Natija (ru)</th>
-              <th style="min-width: 140px">Amallar</th>
+              <th style="min-width: 140px; width:140px">Amallar</th>
             </tr>
             </thead>
             <tbody>
@@ -101,20 +99,20 @@
 
             </tbody>
           </n-table>
+            <n-space justify="space-between" style="margin-top: 20px">
+              <span><span style="font-weight: 600">{{total_item}}</span> tadan <span style="font-weight: 600; margin-left: 20px">{{(params.page -1) * params.per_page}} - {{params.page * params.per_page}}</span> gacha ko'rsatilmoqda</span>
+              <n-pagination
+
+                  v-model:page="params.page"
+                  v-model:page-size="params.per_page"
+                  :page-count="Math.ceil(total_item /params.per_page)"
+                  show-size-picker
+                  :page-sizes="pageSizes"
+                  :on-update:page="change_pagination"
+                  :on-update:page-size ="change_per_page"
+              />
+            </n-space>
           </div>
-          <n-space justify="end" style="margin-top: 20px">
-            <n-pagination
-                v-model:page="params.page"
-                v-model:page-size="params.per_page"
-                :page-count="Math.ceil(total_item /params.per_page)"
-                show-size-picker
-                :page-sizes="pageSizes"
-                :on-update:page="change_pagination"
-                :on-update:page-size ="change_per_page"
-            />
-          </n-space>
-
-
 
           <JR-No-Date v-show="table_list.length == 0 && !table_loading"></JR-No-Date>
         </n-grid-item>
@@ -233,7 +231,7 @@ const rules = {
 }
 
 
-function change_pagination(page) {
+const change_pagination =(page)=> {
   params.value.page = page;
   get_list(params.value)
 }
@@ -247,7 +245,7 @@ const change_per_page =(per_page)=>{
 
 function get_list(payload) {
   table_loading.value = true;
-  bankService.get_banks(payload).then((res) => {
+  bankService.get_banks(params.value).then((res) => {
     total_item.value = res.data.total_item;
     let number = (params.value.page - 1) * params.value.per_page;
     res.data.data.forEach((item) => {

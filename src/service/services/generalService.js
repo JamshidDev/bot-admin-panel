@@ -20,7 +20,9 @@ const delete_category = (payload)=>{
 }
 
 
+const get_user_list = (payload)=>{
+    return axios.get(`/user/all`,  {params:payload})
+}
 
 
-
-export default {get_categories,create_category, update_category,delete_category}
+export default { get_user_list ,get_categories,create_category, update_category,delete_category}

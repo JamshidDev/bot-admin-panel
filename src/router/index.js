@@ -14,11 +14,11 @@ import Service from "../pages/Service/Service.vue"
 
 
 const authLogin = (to, from, next) => {
-    const token = localStorage.getItem("access_token");
+    const token = sessionStorage.getItem("access_token");
     if (token) {
       next();
     }else {
-      localStorage.removeItem("access_token");
+        sessionStorage.removeItem("access_token");
       next("login");
     }
   };

@@ -1,13 +1,16 @@
 <template>
   <div class="layout-wrapper" :class="sidebar ? 'open-sidebar' : 'close-sidebar'">
     <div class="sidebar-container">
-    <Sidebar></Sidebar>
+    <Sidebar @sidebar-event="control_sidebar()"></Sidebar>
     </div>
     <div class="main-page-content">
       <Toolbar @sidebar-event="control_sidebar()" />
       <div class="page-content">
         <router-view></router-view>
       </div>
+    </div>
+    <div @click="control_sidebar()" class="sidebar-overal-bg">
+
     </div>
   </div>
 </template>
