@@ -134,6 +134,7 @@
         />
       </n-form-item>
       <n-form-item label="Natija (uz)" path="result_uz">
+
         <n-input
             v-model:value="bank_details.result_uz"
             type="textarea"
