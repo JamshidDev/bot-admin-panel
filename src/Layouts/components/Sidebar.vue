@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar-dark-box">
-<!--    <div class="control-btn" @click="emit('sidebarEvent')">-->
-<!--      <n-icon :component="ChevronDoubleLeft16Filled" size="26" :depth="1"/>-->
-<!--    </div>-->
+    <div class="control-btn" @click="emit('sidebarEvent')">
+      <n-icon :component="ChevronDoubleLeft16Filled" size="26" :depth="1"/>
+    </div>
     <div class="logo-box" @click="router.push('/')">
       <img src="../../assets/picture/robot.png" alt="">
       <span class="logo-name" >Telegram Bot</span>
@@ -10,10 +10,10 @@
     <div class="item-subtitle">
       Asosiy
     </div>
-<!--    <div class="single-item" v-for="item in menu_list" @click="router.push(item.to)" :class="route.path == item.to && 'active-item-single'" :key="item.to">-->
-<!--      <n-icon :component="item.icon" size="22" :depth="1"/>-->
-<!--      <span>{{item.label}}</span>-->
-<!--    </div>-->
+    <div class="single-item" v-for="item in menu_list" @click="router.push(item.to)" :class="route.path == item.to && 'active-item-single'" :key="item.to">
+      <n-icon :component="item.icon" size="22" :depth="1"/>
+      <span>{{item.label}}</span>
+    </div>
 
 
     <div class="help-center-box">
@@ -47,79 +47,79 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router';
-// import { ChartMultiple20Filled, BuildingBank16Regular, ChevronDoubleLeft16Filled, PersonCircle24Regular } from "@vicons/fluent";
+import { ChartMultiple20Filled, BuildingBank16Regular, ChevronDoubleLeft16Filled, PersonCircle24Regular } from "@vicons/fluent";
 
 
 const emit = defineEmits(['sidebarEvent']);
 
 const router = useRouter();
 const route = useRoute();
-// const menu_list = [
-//     {
-//         label: 'Umumiy Statistika',
-//         icon:ChartMultiple20Filled,
-//       to: '/coming-soon',
-//         visible: () => true,
-//
-//     },
-//     {
-//         label: "Bank ma'lumotlari",
-//         icon: BuildingBank16Regular,
-//         to: '/bank',
-//         visible: () => true,
-//
-//     },
-//     {
-//         label: "Xizmatlar",
-//         icon: ChartMultiple20Filled,
-//         to: '/services',
-//         visible: () => true,
-//     },
-//     {
-//         label: 'Foydalanuvchilar',
-//         icon: PersonCircle24Regular,
-//         to: '/members',
-//         visible: () => true,
-//     },
-//     {
-//         label: 'Kanallar',
-//         icon: ChartMultiple20Filled,
-//         to: '/coming-soon',
-//         visible: () => true,
-//     },
-//     {
-//         label: 'Gruppalar',
-//         icon: ChartMultiple20Filled,
-//         to: '/coming-soon',
-//         visible: () => true,
-//     },
-//     // {
-//     //     label: 'Buyurtmalar',
-//     //     icon: 'globe',
-//     //     to: '/coming-soon',
-//     //     visible: () => true,
-//     // },
-//     // {
-//     //     label: 'Buyurtmalar',
-//     //     icon: 'globe',
-//     //     to: '/coming-soon',
-//     //     visible: () => true,
-//     // },
-//     // {
-//     //     label: 'Buyurtmalar',
-//     //     icon: 'globe',
-//     //     to: '/coming-soon',
-//     //     visible: () => true,
-//     // },
-//     // {
-//     //     label: 'Buyurtmalar',
-//     //     icon: 'globe',
-//     //     to: '/coming-soon',
-//     //     visible: () => true,
-//     // }
-//
-//
-// ];
+const menu_list = [
+    {
+        label: 'Umumiy Statistika',
+        icon:ChartMultiple20Filled,
+      to: '/coming-soon',
+        visible: () => true,
+
+    },
+    {
+        label: "Bank ma'lumotlari",
+        icon: BuildingBank16Regular,
+        to: '/bank',
+        visible: () => true,
+
+    },
+    {
+        label: "Xizmatlar",
+        icon: ChartMultiple20Filled,
+        to: '/services',
+        visible: () => true,
+    },
+    {
+        label: 'Foydalanuvchilar',
+        icon: PersonCircle24Regular,
+        to: '/members',
+        visible: () => true,
+    },
+    {
+        label: 'Kanallar',
+        icon: ChartMultiple20Filled,
+        to: '/coming-soon',
+        visible: () => true,
+    },
+    {
+        label: 'Gruppalar',
+        icon: ChartMultiple20Filled,
+        to: '/coming-soon',
+        visible: () => true,
+    },
+    // {
+    //     label: 'Buyurtmalar',
+    //     icon: 'globe',
+    //     to: '/coming-soon',
+    //     visible: () => true,
+    // },
+    // {
+    //     label: 'Buyurtmalar',
+    //     icon: 'globe',
+    //     to: '/coming-soon',
+    //     visible: () => true,
+    // },
+    // {
+    //     label: 'Buyurtmalar',
+    //     icon: 'globe',
+    //     to: '/coming-soon',
+    //     visible: () => true,
+    // },
+    // {
+    //     label: 'Buyurtmalar',
+    //     icon: 'globe',
+    //     to: '/coming-soon',
+    //     visible: () => true,
+    // }
+
+
+];
 
 
 
