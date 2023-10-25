@@ -4,7 +4,6 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import { createApp } from 'vue';
 
-import VueFeather from 'vue-feather';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueTheMask from 'vue-the-mask';
 
@@ -41,7 +40,7 @@ app.component('JR-Skeleton', JRSkeleton);
 app.component('JR-Avatar', JRAvatar);
 
 
-app.component(VueFeather.name, VueFeather);
+
 
 app.use(router)
 app.use(VueTheMask)
