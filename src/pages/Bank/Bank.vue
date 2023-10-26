@@ -291,6 +291,9 @@ const add_bank = () => {
           }
           if (dialog_type.value) {
             bankService.create_banks({data}).finally(() => {
+              if(params.value.per_page === table_list.value.length){
+                params.value.page =  params.value.page + 1;
+              }
               get_list()
             })
           } else {
@@ -306,6 +309,9 @@ const add_bank = () => {
 
 const delete_bank = (id) => {
   bankService.delete_banks({bank_id: id}).finally(() => {
+    if(table_list.value.length === 1){
+      params.value.page = params.value.page - 1
+    }
     get_list()
   })
 }
