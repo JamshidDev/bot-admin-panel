@@ -58,7 +58,7 @@ const menu_list = [
     {
         label: 'Umumiy Statistika',
         icon:ChartMultiple20Filled,
-      to: '/coming-soon',
+      to: '/statistic',
         visible: () => true,
 
     },

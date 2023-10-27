@@ -10,6 +10,7 @@ import Bank from "../pages/Bank/Bank.vue"
 import Members  from "../pages/Members/Members.vue"
 import ComingSoon from "../pages/ComingSoon/ComingSoon"
 import Service from "../pages/Service/Service.vue"
+import Statistic from "@/pages/Statistic/Statistic.vue";
 
 
 
@@ -31,6 +32,11 @@ const routes = [
         component: Layout,
         beforeEnter: authLogin,
         children:[
+            {
+                path: "/statistic",
+                name: "statistic",
+                component: Statistic,
+            },
             {
                 path: "/home",
                 name: "home",

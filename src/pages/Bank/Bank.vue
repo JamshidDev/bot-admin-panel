@@ -2,7 +2,7 @@
   <div class="pt-4 page-card">
     <n-grid cols="1 s:2 m:2 l:2 xl:2 xxl:2" responsive="screen" style="margin-bottom: 20px">
       <n-grid-item>
-        <n-input style="width:100%; max-width: 200px" v-model:value="params.search" type="text" placeholder="Qidiruv" />
+        <n-input style="width:100%; max-width: 200px" v-model:value="params.search" type="text" placeholder="Qidiruv"/>
       </n-grid-item>
       <n-grid-item>
         <n-space justify="end">
@@ -24,83 +24,95 @@
           </div>
           <div style="overflow-x: auto" v-show="table_list.length > 0 && !table_loading">
             <n-table :bordered="false" :single-line="false" size="small" class="table-border-x">
-            <thead>
-            <tr>
-              <th style="min-width:40px; width: 40px;">No</th>
-              <th style="min-width:80px; width: 80px;">Debet</th>
-              <th style="min-width:80px; width: 80px">Kredit</th>
-              <th style="min-width: 200px">Natija (uz)</th>
-              <th style="min-width: 200px">Natija (ru)</th>
-              <th style="min-width: 140px; width:140px">Amallar</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="item in table_list">
-              <td><span style="display: flex; justify-content: center; align-items: center">{{ item.number }}</span>
-              </td>
-              <td>{{ item.debet }}</td>
-              <td>{{ item.kredit }}</td>
-              <td>{{ item.result_uz }}</td>
-              <td>{{ item.result_ru }}</td>
-              <td>
-                <n-space>
-                  <n-button strong secondary circle type="info">
-                    <template #icon>
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                           viewBox="0 0 24 24">
-                        <path
-                            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
-                            fill="currentColor"></path>
-                      </svg>
-                    </template>
-                  </n-button>
-                  <n-button strong secondary circle type="info" @click="edit_modal(item)">
-                    <template #icon>
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                           viewBox="0 0 24 24">
-                        <path
-                            d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75l1.83-1.83z"
-                            fill="currentColor"></path>
-                      </svg>
-                    </template>
-                  </n-button>
-                  <n-popconfirm
-                      positive-text="Ha" negative-text="Yo'q"
-                      @positive-click="delete_bank(item._id)"
-                  >
-                    <template #icon>
-                      <n-icon color="warning">
+              <thead>
+              <tr>
+                <th style="min-width:40px; width: 40px;">No</th>
+                <th style="min-width:80px; width: 80px;">Debet</th>
+                <th style="min-width:80px; width: 80px">Kredit</th>
+                <th style="min-width: 200px">Natija (uz)</th>
+                <th style="min-width: 200px">Natija (ru)</th>
+                <th style="min-width: 140px; width:140px">Amallar</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="item in table_list">
+                <td><span style="display: flex; justify-content: center; align-items: center">{{ item.number }}</span>
+                </td>
+                <td>{{ item.debet }}</td>
+                <td>{{ item.kredit }}</td>
+                <td>{{ item.result_uz }}</td>
+                <td>{{ item.result_ru }}</td>
+                <td>
+                  <n-space>
+                    <n-popover trigger="click" :delay="0" :duration="500">
+                      <template #trigger>
+                        <n-button strong secondary circle type="warning" @click="copy_text(item)">
+                          <template #icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 viewBox="0 0 24 24">
+                              <path
+                                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+                                  fill="currentColor"></path>
+                            </svg>
+                          </template>
+                        </n-button>
+                      </template>
+                      <span>
+                        Nusxalandi!
+                      </span>
+                    </n-popover>
+
+
+                    <n-button strong secondary circle type="info" @click="edit_modal(item)">
+                      <template #icon>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                              viewBox="0 0 24 24">
-                          <g fill="none">
-                            <path
-                                d="M10.91 2.782a2.25 2.25 0 0 1 2.975.74l.083.138l7.759 14.009a2.25 2.25 0 0 1-1.814 3.334l-.154.006H4.243a2.25 2.25 0 0 1-2.041-3.197l.072-.143L10.031 3.66a2.25 2.25 0 0 1 .878-.878zm9.505 15.613l-7.76-14.008a.75.75 0 0 0-1.254-.088l-.057.088l-7.757 14.008a.75.75 0 0 0 .561 1.108l.095.006h15.516a.75.75 0 0 0 .696-1.028l-.04-.086l-7.76-14.008l7.76 14.008zM12 16.002a.999.999 0 1 1 0 1.997a.999.999 0 0 1 0-1.997zM11.995 8.5a.75.75 0 0 1 .744.647l.007.102l.004 4.502a.75.75 0 0 1-1.494.103l-.006-.102l-.004-4.502a.75.75 0 0 1 .75-.75z"
-                                fill="currentColor"></path>
-                          </g>
+                          <path
+                              d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75l1.83-1.83z"
+                              fill="currentColor"></path>
                         </svg>
-                      </n-icon>
-                    </template>
-                    <template #trigger>
-                      <n-button strong secondary circle type="error">
-                        <template #icon>
+                      </template>
+                    </n-button>
+                    <n-popconfirm
+                        positive-text="Ha" negative-text="Yo'q"
+                        @positive-click="delete_bank(item._id)"
+                    >
+                      <template #icon>
+                        <n-icon color="warning">
                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                viewBox="0 0 24 24">
-                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                            <g fill="none">
+                              <path
+                                  d="M10.91 2.782a2.25 2.25 0 0 1 2.975.74l.083.138l7.759 14.009a2.25 2.25 0 0 1-1.814 3.334l-.154.006H4.243a2.25 2.25 0 0 1-2.041-3.197l.072-.143L10.031 3.66a2.25 2.25 0 0 1 .878-.878zm9.505 15.613l-7.76-14.008a.75.75 0 0 0-1.254-.088l-.057.088l-7.757 14.008a.75.75 0 0 0 .561 1.108l.095.006h15.516a.75.75 0 0 0 .696-1.028l-.04-.086l-7.76-14.008l7.76 14.008zM12 16.002a.999.999 0 1 1 0 1.997a.999.999 0 0 1 0-1.997zM11.995 8.5a.75.75 0 0 1 .744.647l.007.102l.004 4.502a.75.75 0 0 1-1.494.103l-.006-.102l-.004-4.502a.75.75 0 0 1 .75-.75z"
                                   fill="currentColor"></path>
+                            </g>
                           </svg>
-                        </template>
-                      </n-button>
-                    </template>
-                    O'chirmoqchimisiz?
-                  </n-popconfirm>
-                </n-space>
-              </td>
-            </tr>
+                        </n-icon>
+                      </template>
+                      <template #trigger>
+                        <n-button strong secondary circle type="error">
+                          <template #icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 viewBox="0 0 24 24">
+                              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                                    fill="currentColor"></path>
+                            </svg>
+                          </template>
+                        </n-button>
+                      </template>
+                      O'chirmoqchimisiz?
+                    </n-popconfirm>
+                  </n-space>
+                </td>
+              </tr>
 
-            </tbody>
-          </n-table>
+              </tbody>
+            </n-table>
             <n-space justify="space-between" style="margin-top: 20px">
-              <span><span style="font-weight: 600">{{total_item}}</span> tadan <span style="font-weight: 600; margin-left: 20px">{{(params.page -1) * params.per_page}} - {{params.page * params.per_page}}</span> gacha ko'rsatilmoqda</span>
+              <span><span style="font-weight: 600">{{ total_item }}</span> tadan <span
+                  style="font-weight: 600; margin-left: 20px">{{
+                  (params.page - 1) * params.per_page
+                }} - {{ params.page * params.per_page }}</span> gacha ko'rsatilmoqda</span>
               <n-pagination
 
                   v-model:page="params.page"
@@ -109,7 +121,7 @@
                   show-size-picker
                   :page-sizes="pageSizes"
                   :on-update:page="change_pagination"
-                  :on-update:page-size ="change_per_page"
+                  :on-update:page-size="change_per_page"
               />
             </n-space>
           </div>
@@ -181,7 +193,7 @@ const pageSizes = [
   {
     label: '20 tadan',
     value: 20
-  },{
+  }, {
     label: '30 tadan',
     value: 30
   },
@@ -231,12 +243,12 @@ const rules = {
 }
 
 
-const change_pagination =(page)=> {
+const change_pagination = (page) => {
   params.value.page = page;
   get_list(params.value)
 }
 
-const change_per_page =(per_page)=>{
+const change_per_page = (per_page) => {
   params.value.page = 1;
   params.value.per_page = per_page;
   get_list(params.value)
@@ -291,8 +303,8 @@ const add_bank = () => {
           }
           if (dialog_type.value) {
             bankService.create_banks({data}).finally(() => {
-              if(params.value.per_page === table_list.value.length){
-                params.value.page =  params.value.page + 1;
+              if (params.value.per_page === table_list.value.length) {
+                params.value.page = params.value.page + 1;
               }
               get_list()
             })
@@ -309,11 +321,16 @@ const add_bank = () => {
 
 const delete_bank = (id) => {
   bankService.delete_banks({bank_id: id}).finally(() => {
-    if(table_list.value.length === 1){
+    if (table_list.value.length === 1) {
       params.value.page = params.value.page - 1
     }
     get_list()
   })
+}
+
+const copy_text = (data) => {
+  let text = data.debet + " " + data.kredit + " " + data.result_uz + " " + data.result_ru;
+  navigator.clipboard.writeText(text);
 }
 
 
